@@ -10,4 +10,5 @@ class ParksController < ApplicationController
 
   def park_params
     params.permit(:park).permit(:name, :description, :address, :bathroom, :drinking_fountain, :dog_park, :playground, :latitude, :longitude )
+  end
 end

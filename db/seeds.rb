@@ -5,3 +5,31 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+class Seed
+  Park.destroy_all
+
+
+
+  def self.begin
+    seed = Seed.new
+    seed.generate_parks
+  end
+
+  def generate_parks
+    10.times do |i|
+      Park.create!(
+      name: Faker::TwinPeaks.location,
+      description: Faker::Hipster.paragraph,
+      address: Faker::Address.street_address,
+      bathroom: Faker::Boolean.boolean,
+      drinking_fountain: Faker::Boolean.boolean,
+      dog_park: Faker::Boolean.boolean,
+      playground: Faker::Boolean.boolean,
+      latitude: Faker::Address.latitude,
+      longitude: Faker::Address.longitude
+      )
+    end
+  end
+end
+Seed.begin
