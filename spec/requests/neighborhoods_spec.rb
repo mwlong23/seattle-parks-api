@@ -76,23 +76,28 @@ RSpec.describe 'Neighborhoods API', type: :request do
       end
     end
   end
+  describe 'PUT /neighborhood/:id' do
+    let(:valid_attributes) { { name: 'Fremont' } }
+
+    context 'when the record exists' do
+      before { put "/neighborhoods/#{neighborhood_id}", params: valid_attributes }
+
+      it 'updates the record' do
+        expect(response.body).to be_empty
+      end
+
+      it 'returns status code 204' do
+        expect(response).to have_http_status(204)
+      end
+    end
+  end
 
 
+  describe 'DELETE /neighborhoods/:id' do
+    before { delete "/neighborhoods/#{neighborhood_id}" }
+
+    it 'returns status code 204' do
+      expect(response).to have_http_status(204)
+    end
+  end
 end
-
-# describe 'POST /neighborhoods' do
-#
-#   let(:validation_attributes) { { name: 'Ballard'} }
-#
-#   context 'when the request is valid' do
-#     before { post '/neighborhoods', params: valid_attributes }
-#   end
-#
-#   it 'creates a neighborhood' do
-#     expect(json['title']).to eq('Ballard')
-#   end
-#
-#   it 'returns status code 201' do
-#     expect(response).to have_http_status(201)
-#   end
-# end
