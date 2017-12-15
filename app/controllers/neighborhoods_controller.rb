@@ -1,12 +1,13 @@
 class NeighborhoodsController < ApplicationController
+  before_action :set_neighborhood, only: [:show, :update, :destroy]
 
   def index
-    @neighborhoods = Neighborhoods.all
-    json_respons(@neighborhoods)
+    @neighborhoods = Neighborhood.all
+    json_response(@neighborhoods)
   end
 
-  def create_table
-    @neighborhoods = Neighborhoods.create(neighborhood_params)
+  def create
+    @neighborhoods = Neighborhood.create!(neighborhood_params)
     json_response(@neighborhoods, :created)
   end
 
@@ -27,7 +28,7 @@ class NeighborhoodsController < ApplicationController
 private
 
   def neighborhood_params
-    params.require(:neighborhood).permit(:name)
+    params.permit(:name, :created_at, :updated_at)
   end
 
   def set_neighborhood
