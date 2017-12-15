@@ -9,6 +9,6 @@ class ParksController < ApplicationController
   private
 
   def park_params
-    params.permit(:park).permit(:name, :description, :address, :bathroom, :drinking_fountain, :dog_park, :playground, :latitude, :longitude )
+    params.require(:park).permit(:name, :description, :address, :bathroom, :drinking_fountain, :dog_park, :playground, :latitude, :longitude )
   end
 end

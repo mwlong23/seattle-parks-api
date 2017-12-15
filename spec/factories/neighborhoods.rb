@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :neighborhood do
-    name "MyString"
+    name { Faker::HitchhikersGuideToTheGalaxy.planet }
   end
 end
