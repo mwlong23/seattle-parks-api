@@ -43,7 +43,7 @@ RSpec.describe 'Parks API' do
       end
 
       it 'returns the park' do
-        expect(json['id']).to eq(id)
+        expect(json['id']).to eq(neighborhood_id)
       end
     end
 
@@ -56,7 +56,7 @@ RSpec.describe 'Parks API' do
       end
 
       it 'returns a not found message' do
-        expect(response.body).to match(/Couldn't find Neighborhood/)
+        expect(response.body).to match(/Couldn't find Neighborhood with 'id'=#{:id}/)
       end
     end
   end
@@ -97,7 +97,7 @@ RSpec.describe 'Parks API' do
       end
 
       it 'updates the park' do
-        updated_park = Item.find(id)
+        updated_park = Park.find(:id)
         expect(updated_park.name).to match(/Mozart/)
       end
     end
@@ -110,7 +110,7 @@ RSpec.describe 'Parks API' do
       end
 
       it 'returns a not found message' do
-        expect(response.body).to match(/Couldn't find Item/)
+        expect(response.body).to match(/Couldn't find Park/)
       end
     end
   end
