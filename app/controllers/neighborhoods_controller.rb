@@ -2,8 +2,10 @@ class NeighborhoodsController < ApplicationController
   before_action :set_neighborhood, only: [:show, :update, :destroy]
 
   def index
+    neighborhood_name = params[:name]
     @neighborhoods = Neighborhood.all
-    json_response(@neighborhoods)
+    @neighborhood = Neighborhood.search(neighborhood_name)
+    json_response(@neighborhood)
   end
 
   def create

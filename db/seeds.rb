@@ -8,6 +8,7 @@
 
 class Seed
   Park.destroy_all
+  Neighborhood.destroy_all
 
 
 
