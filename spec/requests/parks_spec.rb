@@ -1,9 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Parks API' do
-
   let!(:neighborhood) { create(:neighborhood) }
-  let!(:parks) { create_list(:park, 10) }
+  let!(:parks) { create_list(:park, 10, neighborhood_id: neighborhood.id ) }
   let(:neighborhood_id) { neighborhood.id}
   let(:id) { parks.first.id }
 
@@ -29,7 +28,7 @@ RSpec.describe 'Parks API' do
       end
 
       it 'returns a not found message' do
-        expect(response.body).to match(/Couldn't find neighborhood/)
+        expect(response.body).to match(/Couldn't find Neighborhood/)
       end
     end
   end
@@ -43,7 +42,7 @@ RSpec.describe 'Parks API' do
       end
 
       it 'returns the park' do
-        expect(json['id']).to eq(neighborhood_id)
+        expect(json['id']).to eq(id)
       end
     end
 
@@ -62,7 +61,7 @@ RSpec.describe 'Parks API' do
   end
 
   describe 'POST /neighborhoods/:neighborhood_id/parks' do
-    let(:valid_attributes) { { name: 'Visit Narnia', done: false } }
+    let(:valid_attributes) { { name: 'Gas Works', description: 'A grassy field in Fremont.', address: '555 fremont way', bathroom: true, drinking_fountain: true, dog_park: true, playground:true, latitude: -122.4, longitude: 89.4, neighborhood_id: neighborhood.id} }
 
     context 'when request attributes are valid' do
       before { post "/neighborhoods/#{neighborhood_id}/parks", params: valid_attributes }
@@ -97,7 +96,7 @@ RSpec.describe 'Parks API' do
       end
 
       it 'updates the park' do
-        updated_park = Park.find(:id)
+        updated_park = Park.find(id)
         expect(updated_park.name).to match(/Mozart/)
       end
     end
@@ -115,7 +114,7 @@ RSpec.describe 'Parks API' do
     end
   end
 
-  # Test suite for DELETE /neighborhoods/:id
+
   describe 'DELETE /neighborhoods/:id' do
     before { delete "/neighborhoods/#{neighborhood_id}/parks/#{id}" }
 
