@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   resources :neighborhoods do
     resources :parks
   end
+get "find/random", to: "neighborhoods#random"
+get "find/search", to: "neighborhoods#search"
 end
