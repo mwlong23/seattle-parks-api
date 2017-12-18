@@ -3,7 +3,6 @@ class ParksController < ApplicationController
   before_action :set_neighborhood_park, only: [:show, :update, :destroy]
 
   def index
-    binding.pry
     json_response(@neighborhood.parks)
   end
 
