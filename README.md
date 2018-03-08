@@ -17,8 +17,6 @@ If you''re unfamiliar with installing packages I would recommend [Homebrew](http
 
 [This](http://blog.teamtreehouse.com/installing-rails-5-linux) is a great guide by Treehouse to get you started with Ruby and Rails on any system.
 
-
-
 Hats off to you! That was the hard part. 
 
 Once all dependencies are installed: 
@@ -50,10 +48,6 @@ Example Results:
 ``` 
 (Remember that neighborhoods are currently seeded with Hitchhikers Guide to the Galaxy planets, see endpoints below)
 
-
-
-
-
 ### Endpoints
 * Random Neighborhood: http://localhost:3000/find/random
 
@@ -64,11 +58,15 @@ http://localhost:3000/neighborhoods/3/parks
 
 ### API Call Results
 
-
 ### Additional Coming Features: 
 * Replace Seed Data with Actual Park Data. 
 * Token Based Authentication with JWT
 * Pagination
 * Serialization
 * Rate Limitations
+
+##License
+This application is covered by an MIT Open Software License
+
+Copyright (c) 2017 Mitchell Long
 
